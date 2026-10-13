@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marginalia – Research Paper Assistant</title>
+  <meta name="description" content="Upload research papers and ask questions. Every answer cites the document and page it came from.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='3' width='22' height='26' rx='4' fill='%23fff' stroke='%23171A2E' stroke-width='2'/%3E%3Crect x='9' y='11' width='14' height='6' fill='%23FFE35C'/%3E%3Cpath d='M9 8h10M9 21h14M9 25h8' stroke='%23171A2E' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <div class="backdrop" id="backdrop"></div>
+
+  <aside class="library" id="library" aria-label="Your papers">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="5" y="3" width="22" height="26" rx="4" fill="#fff" stroke="#171A2E" stroke-width="2"/>
+        <rect x="9" y="11" width="14" height="6" fill="#FFE35C"/>
+        <path d="M9 8h10M9 21h14M9 25h8" stroke="#171A2E" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="brand-name">Marginalia</div>
+        <div class="brand-sub">Research paper assistant</div>
+      </div>
+    </div>
+
+    <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload PDF research papers">
+      <input type="file" id="fileInput" accept=".pdf,application/pdf" multiple hidden>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+      <div class="dz-title">Drop research papers here</div>
+      <div class="dz-sub">PDF files, one or many. Or <span class="dz-link">browse your computer</span>.</div>
+    </div>
+    <div class="upload-status" id="uploadStatus" aria-live="polite"></div>
+
+    <div class="shelf-head">
+      <h2>Your papers <span class="count" id="count">0</span></h2>
+      <button class="text-btn" id="clearAll" hidden>Remove all</button>
+    </div>
+    <ul class="shelf" id="shelf"></ul>
+    <p class="shelf-empty" id="shelfEmpty">Nothing here yet. Uploaded papers appear on this shelf, and you choose which ones to ask about.</p>
+
+    <div class="ai-status" id="aiStatus" hidden></div>
+  </aside>
+
+  <main class="reader">
+    <header class="reader-head">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open your papers">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+      <div>
+        <h1 id="scopeTitle">Ask your papers</h1>
+        <p id="scopeMeta">Answers come only from the documents you upload.</p>
+      </div>
+      <button class="text-btn" id="newChat" hidden>New conversation</button>
+    </header>
+
+    <div class="thread" id="thread" aria-live="polite"></div>
+
+    <div class="dock">
+      <div class="quick" id="quick" aria-label="Suggested questions"></div>
+      <form class="composer" id="composer" autocomplete="off">
+        <label class="sr-only" for="question">Your question</label>
+        <textarea id="question" rows="1" maxlength="2000" placeholder="Ask a question about your papers"></textarea>
+        <button type="submit" class="send" id="send" aria-label="Send question">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
+        </button>
+      </form>
+      <p class="hint" id="hint" role="status"></p>
+    </div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

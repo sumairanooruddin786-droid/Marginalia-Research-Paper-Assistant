@@ -1,0 +1,10 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+pypdf>=5.0
+python-dotenv>=1.0
+chromadb>=1.0
+langchain-core>=1.0
+langchain-text-splitters>=1.0
+langchain-chroma>=1.0
+langchain-google-genai>=4.0
